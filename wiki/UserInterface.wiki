@@ -1,0 +1,1 @@
+C:\Program Files\EA GAMES\Ultima Online Stygian Abyss\User Interface\
