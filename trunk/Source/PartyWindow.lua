@@ -96,6 +96,7 @@ function PartyWindow.ClearOldPartyHealthBars()
 	end	
 	WindowSetDimensions(PartyWindow.windowName, PartyWindow.windowX, PartyWindow.windowY)
 	PartyWindow.groupMemberIds = {}
+	PartyWindow.reverseIndexId = {}
 end
 
 function PartyWindow.CreatePartyHealthBars()
@@ -115,8 +116,9 @@ end
 
 function PartyWindow.CloseHealthBar(mobileId)
 	local windowName = "PartyWindowShowViewPartyHealthBar"..PartyWindow.reverseIndexId[mobileId]
+	
+			--Debug.Print("Destroying..."..windowName)
 	if( DoesWindowNameExist(windowName) == true) then
-		--Debug.Print("Destroying..."..windowName)
 		UnregisterWindowData(WindowData.MobileStatus.Type, mobileId)
 		UnregisterWindowData(WindowData.MobileName.Type, mobileId)
 		UnregisterWindowData(WindowData.HealthBarColor.Type, mobileId)
@@ -131,11 +133,13 @@ function PartyWindow.UpdateHealthBarId(index, mobileId)
 	--local inputName = healthName.."InputName"	
 	
 	--Debug.Print("Player Id "..mobileId)
-	WindowSetId(healthName, mobileId)
-	--WindowSetId(inputName, mobileId)
+	--WindowSetId(healthName, mobileId)
+	--WindowSetId(inputName, mobileId)	
 	
-	PartyWindow.hasWindow[mobileId] = true
-	PartyWindow.reverseIndexId[mobileId] = index
+	--PartyWindow.hasWindow[mobileId] = true
+	--PartyWindow.reverseIndexId[mobileId] = index
+	
+
 	RegisterWindowData(WindowData.MobileStatus.Type, mobileId)	
 	RegisterWindowData(WindowData.MobileName.Type, mobileId)
 	RegisterWindowData(WindowData.HealthBarColor.Type, mobileId)
@@ -161,12 +165,19 @@ function PartyWindow.CreateHealthBar(index, mobileId)
 	--Debug.Print("CreatingHealthBar "..healthName)
 	CreateWindowFromTemplate(healthName, "PartyHealthBarTemplate", showName)
 
+	WindowSetId(healthName, mobileId)
+	PartyWindow.hasWindow[mobileId] = true
+	PartyWindow.reverseIndexId[mobileId] = index
 	PartyWindow.windowCount = PartyWindow.windowCount + 1
-
+	
+	--Debug.Print("Index = "..index)
+	
 	if ( index == 1 ) then
 		WindowAddAnchor(healthName, "bottomleft", showName.."TitleBar", "topleft", 10, -10 )
+		--Debug.Print("1st Time")
 	else
 		WindowAddAnchor(healthName, "bottomleft", showName.."PartyHealthBar"..(index-1), "topleft", 0, PartyWindow.windowOffset)
+		--Debug.Print("2nd Time....")
 	end
 	PartyWindow.UpdateHealthBarId(index, mobileId)
 	PartyWindow.UpdateName(mobileId)
@@ -216,7 +227,7 @@ end
 function PartyWindow.UpdateStatus(mobileId)
 	if(PartyWindow.reverseIndexId[mobileId] ~= nil) then
 		local windowName = "PartyWindowShowViewPartyHealthBar"..PartyWindow.reverseIndexId[mobileId]
-		Debug.Print("UpdateStatus "..windowName)
+		--Debug.Print("UpdateStatus "..windowName)
 		--Set mobiles health status bar and name if their health bar is showing and not disabled
 		if( (PartyWindow.hasWindow[mobileId] == true) ) then
 			

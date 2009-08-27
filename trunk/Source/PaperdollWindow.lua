@@ -17,7 +17,7 @@ PaperdollWindow.HUMAN = 1
 PaperdollWindow.ELF = 2
 PaperdollWindow.GARGOYLE = 3
 
-PaperdollWindow.WINDOWSCALE = 0.86
+PaperdollWindow.WINDOWSCALE = 0.68
 
 PaperdollWindow.CurrentTab = 1
 
@@ -104,7 +104,6 @@ function PaperdollWindow.Initialize()
 	if( SystemData.Paperdoll.Name ~= nil ) then
 		LabelSetText(windowName.."TitleName",SystemData.Paperdoll.Name)
 	end
-	LabelSetText(windowName.."TogglePartyLabel", L"Party List")
 	
 	WindowSetShowing(windowName.."ToggleCharacterSheet", false)
 	WindowSetShowing(windowName.."ToggleCharacterAbilities", false)
@@ -463,6 +462,7 @@ function PaperdollWindow.SelectTab(parent, tabNum)
 	local characterSheetButton = parent.."ToggleCharacterSheet"
 	local characterAbilitiesButton = parent.."ToggleCharacterAbilities"
 	local inventoryButton = parent.."ToggleInventory"
+	local togglepartyButton = parent.."ToggleParty"
 	
 	PaperdollWindow.CurrentTab = tabNum
 	
@@ -474,6 +474,7 @@ function PaperdollWindow.SelectTab(parent, tabNum)
 		WindowSetShowing(characterSheetButton, false)
 		WindowSetShowing(characterAbilitiesButton, false)
 		WindowSetShowing(inventoryButton, false)
+		WindowSetShowing(togglepartyButton, false)
 	else
 		WindowSetShowing(inventoryButton, true)
 		local playerId = WindowData.PlayerStatus.PlayerId
@@ -482,6 +483,7 @@ function PaperdollWindow.SelectTab(parent, tabNum)
 		if (playerId == id) then
 			WindowSetShowing(characterSheetButton, true)
 			WindowSetShowing(characterAbilitiesButton, true)
+			WindowSetShowing(togglepartyButton, true)
 		end
 	end
 end
@@ -551,14 +553,16 @@ end
 function PaperdollWindow.TogglePartyWindow()
 	local id = WindowGetId(WindowUtils.GetActiveDialog())
 	local windowName = "PaperdollWindow"..id
-
+	--local characterSheetName = windowName.."TogglePartyListWindow"
+	----if (ButtonGetDisabledFlag(characterSheetName) ) then
+		--return
+	--end
+	
 	if not WindowGetShowing("PartyListWindow") then
 		WindowSetShowing("PartyListWindow", true)
-			ButtonSetPressedFlag(windowName.."TogglePartyButton", true)
-		--PartyListWindow.UpdateParty()
+		PartyListWindow.UpdateParty()
 	else
 		WindowSetShowing("PartyListWindow", false)
-			ButtonSetPressedFlag(windowName.."TogglePartyButton", false)
 	end
 	
 end

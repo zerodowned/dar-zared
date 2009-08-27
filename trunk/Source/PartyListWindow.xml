@@ -5,13 +5,20 @@
   <Windows>
     <Window name ="PartyListTemplate">
       <Size>
-        <AbsPoint x="195" y="15" />
+        <AbsPoint x="160" y="15" />
       </Size>
       <EventHandlers>
         <EventHandler event="OnLButtonDown" function="PartyListWindow.OnMouseDrag" />
-        <!--<EventHandler event="OnRButtonUp" function="PartyListWindow.OnRClick" />-->
+        <EventHandler event="OnRButtonUp" function="PartyListWindow.OnRClick" />
       </EventHandlers>
       <Windows>
+        <Window name="$parentFrame" inherits="UO_DefaultWindow1">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        
         <DynamicImage name="$parentIcon">
           <Anchors>
             <Anchor point="topleft" relativePoint="center" relativeTo="">
@@ -19,9 +26,9 @@
             </Anchor>
           </Anchors>
         </DynamicImage>
-        <Label name="$parentMemberName" font="UO_DefaultText" linespacing="18" maxchars="35" textalign="left" autoresize="true" handleinput="false" >
+        <Label name="$parentMemberName" font="UO_DefaultText" linespacing="18" maxchars="20" textalign="left" autoresize="true" handleinput="false" >
           <Size>
-            <AbsPoint x="195" y="10" />
+            <AbsPoint x="150" y="10" />
           </Size>
           <Anchors>
             <Anchor point="left" relativePoint="left" relativeTo="">
@@ -32,10 +39,10 @@
         </Label>
       </Windows>
     </Window>
-    
+
     <Window name="PartyListWindow" layer="default" movable="true">
       <Size>
-        <AbsPoint x="269" y="355" />
+        <AbsPoint x="245" y="284" />
       </Size>
       <Anchors>
         <Anchor point="topleft" relativePoint="topleft">
@@ -46,12 +53,12 @@
         <EventHandler event="OnInitialize" function="PartyListWindow.Initialize" />
         <EventHandler event="OnShutdown" function="PartyListWindow.Shutdown" />
         <EventHandler event="OnLButtonDown" function="PartyListWindow.OnMouseDrag" />
-        <!--<EventHandler event="OnRButtonUp" function="PartyListWindow.OnRClick" />-->
+        <EventHandler event="OnRButtonUp" function="PartyListWindow.OnRClick" />
       </EventHandlers>
       <Windows>
         <Window name="$parentShowView" movable="false">
           <Size>
-            <AbsPoint x="265" y="345" />
+            <AbsPoint x="245" y="284" />
           </Size>
           <Anchors>
             <Anchor point="topleft" relativePoint="topleft">
@@ -59,25 +66,20 @@
             </Anchor>
           </Anchors>
           <Windows>
-              <!--Background Image-->
-            <DynamicImage name="$parentTitleBar" texture="map_parchment_widgets" texturescale="1.50" layer="background">
-              <Size>
-                <AbsPoint x="265" y="345" />
-              </Size>
-              <TexCoords x="341" y="284" />
+            <!--Background Image-->
+            <Window name="$parentFrame" inherits="UO_DefaultWindow">
               <Anchors>
-                <Anchor point="topleft" relativePoint="topleft">
-                  <AbsPoint x="0" y="0" />
-                </Anchor>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright"/>
               </Anchors>
-            </DynamicImage>
-            <Label name="$parentName" font="UO_Title" maxchars="16" textalign="center" handleinput="false" wordwrap="true" linespacing="18">
+            </Window>
+            <Label name="$parentName" font="UO_DefaultText" maxchars="16" textalign="center" handleinput="false" wordwrap="true" linespacing="18">
               <Size>
-                <AbsPoint x="165" y="10" />
+                <AbsPoint x="165" y="18" />
               </Size>
               <Anchors>
-                <Anchor point="top" relativePoint="top" relativeTo="$parentTitleBar">
-                  <AbsPoint x="0" y="20" />
+                <Anchor point="top" relativePoint="top" relativeTo="">
+                  <AbsPoint x="0" y="5" />
                 </Anchor>
               </Anchors>
             </Label>
