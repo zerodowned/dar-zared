@@ -23,8 +23,8 @@ function PartyListWindow.Initialize()
 	--Debug.Print("PartyListWindow.Initalize()")
 	local windowName = "PartyListWindow"
 	local titleName = windowName.."ShowViewName"
-	LabelSetText(titleName, L"Party List" )
-	LabelSetTextColor(titleName, 0,0,255)
+	LabelSetText(titleName, L"Party" )
+	LabelSetTextColor(titleName, 255,0,255)
 	
 	RegisterWindowData(WindowData.PartyMember.Type, 0)	
 	WindowRegisterEventHandler( "PartyListWindow", WindowData.PartyMember.Event, "PartyListWindow.UpdateParty")
@@ -48,7 +48,7 @@ function PartyListWindow.Shutdown()
 end
 
 function PartyListWindow.UpdateParty()
-	Debug.Print("Made it to UpdateParty")
+	--Debug.Print("Made it to UpdateParty")
 	PartyListWindow.ClearPartyList()
 	PartyListWindow.PopulatePartyList()
 end
@@ -60,19 +60,19 @@ function PartyListWindow.PopulatePartyList()
 		if (WindowData.PartyMember.NUM_PARTY_MEMBERS > 0) then
 			while (index <= WindowData.PartyMember.NUM_PARTY_MEMBERS) do
 				local id = WindowData.PartyMember[index].memberId 
-				Debug.Print(L""..id)
+				--Debug.Print(L""..id)
 				local data = WindowData.MobileName[id]
 				local windowName = "PartyList"..index  
 				
 				PartyListWindow.hasWindow[index] = true
 				PartyListWindow.mobileID[id] = index
 				
-				Debug.Print(windowName)
+				--Debug.Print(windowName)
 				CreateWindowFromTemplate(windowName,"PartyListTemplate", "PartyListWindowShowView" )
 				WindowSetId(windowName, index)
 	            
 				if( prevWindowName == nil ) then
-					WindowAddAnchor(windowName, "top", "PartyListWindow", "top", -20, 60)
+					WindowAddAnchor(windowName, "top", "PartyListWindow", "top", -25, 40)
 				else
 					WindowAddAnchor(windowName, "bottom", prevWindowName, "top", 0, 5)
 				end
@@ -150,7 +150,7 @@ end
 function PartyListWindow.CloseWindow(index)
 	local windowName = "PartyList"..index
 	if( DoesWindowNameExist(windowName) == true) then
-		Debug.Print("Destroying..."..windowName)
+		--Debug.Print("Destroying..."..windowName)
 		DestroyWindow(windowName)
 	end
 end
@@ -166,7 +166,7 @@ function PartyListWindow.OnRClick()
 end
 
 function PartyListWindow.OnMouseDrag()
-	Debug.Print(SystemData.ActiveWindow.name)
+	--Debug.Print(SystemData.ActiveWindow.name)
 	local windowName = "PartyListWindow"
 	local showName = windowName.."ShowView"
 	if (SnapUtils.SnappableWindows[showName] == true) then

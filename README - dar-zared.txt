@@ -2,7 +2,12 @@
 Custom UI for use with Ultima Online Stygian Abyss
 
 
-Inital Release (r2)
+Release v1.01
+
+	Fixed some errors having to do with the PartyWindow & Changed the PartyListWindow
+
+
+Inital Release 
 
 It includes the following
 1. Re-sizable Atlas 
@@ -13,8 +18,8 @@ It includes the following
 
 
 
-Please let me know if you have any suggestions for improvement.
-techage@sbcglobal.net
+Please let us know if you have any suggestions for improvement.
+dar.uosa@gmail.com or wolfsteph.g98@gmail.com
 
 
 ------------

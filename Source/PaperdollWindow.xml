@@ -595,48 +595,38 @@
           </EventHandlers>
         </Button>
 
-        <!--<Button name="$parentToggleParty" sticky="false" backgroundtexture="hud_image" highlighttexture="hud_image" layer="secondary" popable="false" >
+        <Button name="$parentToggleParty" sticky="false" backgroundtexture="UO_Party" textureScale="0.40"  highlighttexture="UO_Party" layer="secondary" popable="false"  >
           <Size>
-            <AbsPoint x="64" y="64" />
+            <AbsPoint x="20" y="80" />
           </Size>
           <Anchors>
-            <Anchor point="bottomright" relativePoint="bottomright">
-              <AbsPoint x="-25" y="-160" />
+            <Anchor point="bottomleft" relativePoint="bottomleft">
+              <AbsPoint x="80" y="-80" />
             </Anchor>
           </Anchors>
           <TexCoords>
-            <Normal x="112" y="495" />
-            <NormalHighlit x="112" y="495" />
-            <Pressed x="112" y="495" />
-            <PressedHighlit x="112" y="495" />
+            <Normal x="0" y="-5" />
+            <NormalHighlitx x="0" y="-5" />
+            <Pressed x="0" y="-5" />
+            <PressedHighlit x="0" y="-5" />
           </TexCoords>
           <OverlayTexCoords>
-            <Normal         x="115" y="749" />
-            <NormalHighlit  x="115" y="567" />
-            <Pressed        x="115" y="567" />
-            <PressedHighlit x="115" y="567" />
-            <Disabled       x="115" y="749" />
+            <Normal         x="0" y="-5" />
+			<NormalHighlit  x="0" y="-5" />
+			<Pressed       x="0" y="-5" />
+			<PressedHighlit x="0" y="-5" />
+			<Disabled       x="0" y="-5" />
           </OverlayTexCoords>
-          <EventHandlers>
+		  
+		  <EventHandlers>
             <EventHandler event="OnLButtonUp" function="PaperdollWindow.TogglePartyWindow" />
           </EventHandlers>
-        </Button>-->
-
-        <Window name="$parentToggleParty" inherits="LabelCheckButton" >
-          <Size>
-            <AbsPoint x="150" y="32" />
-          </Size>
-          <Anchors>
-            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentItemSlotButton19">
-              <AbsPoint x="15" y="0" />
-            </Anchor>
-          </Anchors>
-          <EventHandlers>
-            <EventHandler event="OnLButtonUp" function="PaperdollWindow.TogglePartyWindow" />
-          </EventHandlers>
-        </Window>
-
-
+        </Button>
+        
+        
+        
+        
+        
         <Button name="$parentToggleInventory" sticky="false" backgroundtexture="hud_image" highlighttexture="hud_image" layer="secondary" popable="false" draganddrop="true" >
           <Size>
             <AbsPoint x="63" y="63" />
