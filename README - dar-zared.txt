@@ -1,13 +1,19 @@
 "dar-zared" - by Dar & Zared
 Custom UI for use with Ultima Online Stygian Abyss
 
+Release (1.1)
+1. Changed Resize Atlas to hide Facet & Area Dropdowns
+2. Countdowns on the Buff/Defuff
+3. Added artwork for Bandage Buff
+4. Made Timers on Buff/Debuff larger
+5. Main Menu has Debug Window Option
+6. Larger Text in Overhead chat (if u dont like just delete overheadtext.htm file in source dir.)
 
-Release v1.01
+Issues:
+Party.dds file has a problem showing up on the Paperdoll. Not sure why yet.
 
-	Fixed some errors having to do with the PartyWindow & Changed the PartyListWindow
 
-
-Inital Release 
+Inital Release (1.0)
 
 It includes the following
 1. Re-sizable Atlas 
@@ -18,8 +24,8 @@ It includes the following
 
 
 
-Please let us know if you have any suggestions for improvement.
-dar.uosa@gmail.com or wolfsteph.g98@gmail.com
+Please let me know if you have any suggestions for improvement.
+techage@sbcglobal.net
 
 
 ------------

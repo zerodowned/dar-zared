@@ -17,12 +17,16 @@ UO_DefaultWindow.WindowDestroyQueue = {}
 
 -- OnInitialize Handler
 function UO_DefaultWindow.Initialize()
-	WindowSetAlpha(SystemData.ActiveWindow.name.."_UO_DefaultWindowBackground", 0.8);
+	--Debug.Print(SystemData.ActiveWindow.name)
+	if SystemData.ActiveWindow.name == "DebugWindowChrome" then
+		WindowSetAlpha(SystemData.ActiveWindow.name.."_UO_DefaultWindowBackground", 1)
+	else
+		WindowSetAlpha(SystemData.ActiveWindow.name.."_UO_DefaultWindowBackground", 0.8)
+	end	
 end
 
 function UO_DefaultWindow.CloseDialog()
-	local activeDialog = WindowUtils.GetActiveDialog()
-	
+	local activeDialog = WindowUtils.GetActiveDialog()	
 	--If the On Close Callback is not nil that means the window has a call back function they want to run before
 	--the window closes
 	if( Interface.OnCloseCallBack[activeDialog] ~= nil) then
@@ -30,12 +34,13 @@ function UO_DefaultWindow.CloseDialog()
 	end
 	
 	if DoesWindowNameExist( activeDialog ) then
+		--ButtonSetPressedFlag(activeDialog.."_UO_WindowCloseButton", false)	
 		if( Interface.DestroyWindowOnClose[activeDialog] ~= nil ) then
 			DestroyWindow(activeDialog)
 		else
 			WindowSetShowing(activeDialog, false)
 		end
-		ButtonSetPressedFlag(activeDialog.."Chrome_UO_WindowCloseButton", false)
+
 	end
 end
 

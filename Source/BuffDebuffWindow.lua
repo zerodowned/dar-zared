@@ -33,6 +33,8 @@ function BuffDebuff.Update(timePassed)
 				BuffDebuff.HandleBuffRemoved(key)
 			end	
 		end
+		--Update Timer Label
+		BuffDebuff.UpdateTimer()		
 		--Reset delta time when it gets used to decrement the timers
 		BuffDebuff.DeltaTime = 0
 	end
@@ -314,24 +316,37 @@ function BuffDebuff.UpdateStatusForBandage(iconId, counter)
 	local iconTextureName = parent.."TextureIcon"
 	
 	--Debug.Print("BuffDebuff buffId = "..buffId)
-	local textureId = 620
+	local textureId = 99999
 		
 	if( textureId ~= nil or textureId ~= -1) then
 		--Debug.Print("BuffDebuff UpdateStatus textureId = "..textureId)
 		local texture, x, y = GetIconData( textureId )
 		--Debug.Print(texture.." , "..x.." , "..y)
-		DynamicImageSetTexture( iconTextureName, texture, 10, 10 )
+		DynamicImageSetTexture( iconTextureName, texture, x, y )
 		BuffDebuff.UpdateBandageCounter(counter)
 	end
 end
 
 function BuffDebuff.UpdateBandageCounter(counter)
-	local label = "BuffDebuffIcon1BandageTime"
+	local label = "BuffDebuffIcon1labelTimer"
 	local parent = "BuffDebuffIcon"
 	
 	if (BuffDebuff.BuffWindowId[1] == true) then
 		LabelSetText(label, counter)
-		LabelSetTextColor(label, 255,0,0)
+		LabelSetTextColor(label, 255,255,255)
 	end
 end
 
+function BuffDebuff.UpdateTimer()
+	local endNumber = table.getn(BuffDebuff.TableOrder)
+	for i=1, endNumber do
+		local buffId = BuffDebuff.TableOrder[i]
+		local parent = "BuffDebuff"
+		local iconName = parent.."Icon"..buffId
+		
+		if ( BuffDebuff.Timers[buffId] ~= nil and BuffDebuff.Timers[buffId] > 0 ) then
+			local timer = tostring(BuffDebuff.Timers[buffId])				
+			LabelSetText(iconName.."labelTimer",StringToWString(timer)..L"s")
+		end
+	end	
+end

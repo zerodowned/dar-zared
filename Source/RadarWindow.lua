@@ -45,7 +45,6 @@ function RadarWindow.UpdateRadar()
         local xOffset = RadarWindow.Size / 2
         local yOffset = RadarWindow.Size / 2
         
-        --Debug.Print(L"RadarWindow.UpdateRadar")
         CircleImageSetTexture("RadarWindowMap","radar_texture", WindowData.Radar.TexCoordX + xOffset, WindowData.Radar.TexCoordY + yOffset)
         CircleImageSetTextureScale("RadarWindowMap", WindowData.Radar.TexScale)
         CircleImageSetRotation("RadarWindowMap", RadarWindow.Rotation)
@@ -129,14 +128,20 @@ function RadarWindow.RadarOnLButtonDblClk(flags,x,y)
 end
 
 function RadarWindow.SetRadarCoords()
-	local waypointName = GetStringFromTid(MapCommon.TID.YourLocation)
-	local waypointX = WindowData.PlayerLocation.x
-    local waypointY = WindowData.PlayerLocation.y
-    local waypointFacet = WindowData.PlayerLocation.facet
-	local latStr, longStr, latDir, longDir = MapCommon.GetSextantLocationStrings(waypointX, waypointY, waypointFacet)
+
+            waypointName = GetStringFromTid(MapCommon.TID.YourLocation)
+            waypointX = WindowData.PlayerLocation.x
+            waypointY = WindowData.PlayerLocation.y
+            waypointFacet = WindowData.PlayerLocation.facet
+
+			local latStr, longStr, latDir, longDir = MapCommon.GetSextantLocationStrings(waypointX, waypointY, waypointFacet)
         
-	LabelSetText("radarSextant", latStr..L"'"..latDir..L" "..longStr..L"'"..longDir)
-    if( MapCommon.ActiveView == MapCommon.MAP_MODE_NAME ) then
 		LabelSetText("radarSextant", latStr..L"'"..latDir..L" "..longStr..L"'"..longDir)
-   end
+        
+        if( MapCommon.ActiveView == MapCommon.MAP_MODE_NAME ) then
+			LabelSetText("radarSextant", latStr..L"'"..latDir..L" "..longStr..L"'"..longDir)
+        end
+        
+	
+	
 end

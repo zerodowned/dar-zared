@@ -17,7 +17,7 @@ PaperdollWindow.HUMAN = 1
 PaperdollWindow.ELF = 2
 PaperdollWindow.GARGOYLE = 3
 
-PaperdollWindow.WINDOWSCALE = 0.68
+PaperdollWindow.WINDOWSCALE = 0.85 --0.68
 
 PaperdollWindow.CurrentTab = 1
 
