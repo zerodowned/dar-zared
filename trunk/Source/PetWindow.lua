@@ -121,6 +121,7 @@ function PetWindow.UpdateHealthBarId(index, mobileId)
 	--Debug.Print("Pet Id "..mobileId)
 	WindowSetId(healthName, mobileId)
 	WindowSetId(inputName, mobileId)
+	WindowSetId(healthName.."EditName", mobileId)
 	
 	PetWindow.hasWindow[mobileId] = true
 	PetWindow.reverseIndexId[mobileId] = index
@@ -340,4 +341,41 @@ function PetWindow.CureMember()
 		UserActionCastSpellOnId(MobileHealthBarWindow.Spells.Cure, mobileId)
 	end
 end
+end
+
+function PetWindow.RenameComplete()
+	-- Lucitus TODO: Needs more control of the name in interest of legal iusses
+	local mobileId = PetRenameWindow.id 
+	WindowData.Pets.RenameId = mobileId
+	WindowData.Pets.Name = WStringToString(PetRenameWindow.TextEntered)
+	BroadcastEvent(SystemData.Events.RENAME_MOBILE)	
+end
+
+function PetWindow.RenamePet()
+	local mobileId = WindowGetId(SystemData.ActiveWindow.name)
+	local rdata = {}
+	Debug.Print(WindowData.MobileName[mobileId].MobName)
+	rdata.text = WindowData.MobileName[mobileId].MobName
+	rdata.title = L"Enter the new name of your pet:"
+	rdata.callfunction = PetWindow.RenameComplete
+	rdata.id = mobileId
+	rdata.IllegalCharacters="[^A-Za-z ]"
+	PetRenameWindow.Create(rdata)
+end
+
+function PetWindow.ViewButtonMouseOver()
+	--Lucitus TODO: Show Tooltip on Renamebutton
+	--Lucitus Done 19.03.2009
+	local messageText = L"Rename Pet"
+	local mobileId = WindowGetId(SystemData.ActiveWindow.name)
+
+	local itemData = { windowName = SystemData.ActiveWindow.name,
+						itemId = mobileId,
+						itemType = ItemProperties.type.TYPE_WSTRINGDATA,
+						binding = L"",
+						detail = nil,
+						title =	messageText,
+						body = L""}
+
+	ItemProperties.SetActiveItem(itemData)
 end

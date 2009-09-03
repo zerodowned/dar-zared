@@ -41,10 +41,11 @@ end
 -- OnInitialize Handler
 function DebugWindow.Initialize()
 
+	WindowUtils.RestoreWindowPosition("DebugWindow", true) 
 	CreateWindow("DebugWindowOptions",false)
 
 	WindowUtils.SetWindowTitle("DebugWindow",L"Debug Window")
-
+	
     -- Display Settings
     LogDisplaySetShowTimestamp( "DebugWindowText", false )
     LogDisplaySetShowLogName( "DebugWindowText", true )
@@ -119,6 +120,7 @@ end
 -- OnShutdown Handler
 function DebugWindow.Shutdown()
 	-- Save the settings across reloads
+	WindowUtils.SaveWindowPosition("DebugWindow", true)
 	DevData.DebugWindow.isShowing = WindowGetShowing("DebugWindow")
 	DevData.DebugWindow.screenPos.x, DevData.DebugWindow.screenPos.y = WindowGetOffsetFromParent("DebugWindow")
 	DevData.DebugWindow.size.x, DevData.DebugWindow.size.y = WindowGetDimensions("DebugWindow")
@@ -150,13 +152,11 @@ function DebugWindow.ToggleLogging()
     UpdateLoggingButton ()
 
 end
-
 function DebugWindow.OnResizeBegin()
     WindowUtils.BeginResize( "DebugWindow", "topleft", 300, 200, false, nil)
 end
 
 --- Options Window
-
 function DebugWindow.ToggleOptions()
 	local showing = WindowGetShowing( "DebugWindowOptions" )
 	WindowSetShowing("DebugWindowOptions", showing == false )

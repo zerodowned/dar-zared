@@ -12,12 +12,12 @@
         <EventHandler event="OnRButtonUp" function="PartyListWindow.OnRClick" />
       </EventHandlers>
       <Windows>
-        <Window name="$parentFrame" inherits="UO_DefaultWindow1">
+        <!--<Window name="$parentFrame" inherits="UO_DefaultWindow1">
           <Anchors>
             <Anchor point="topleft" relativePoint="topleft" />
             <Anchor point="bottomright" relativePoint="bottomright"/>
           </Anchors>
-        </Window>
+        </Window>-->
         
         <DynamicImage name="$parentIcon">
           <Anchors>

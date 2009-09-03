@@ -24,7 +24,7 @@ function PartyListWindow.Initialize()
 	local windowName = "PartyListWindow"
 	local titleName = windowName.."ShowViewName"
 	LabelSetText(titleName, L"Party" )
-	LabelSetTextColor(titleName, 255,0,255)
+	LabelSetTextColor(titleName, 255,255,0)
 	
 	RegisterWindowData(WindowData.PartyMember.Type, 0)	
 	WindowRegisterEventHandler( "PartyListWindow", WindowData.PartyMember.Event, "PartyListWindow.UpdateParty")

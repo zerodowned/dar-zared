@@ -16,6 +16,7 @@ MapWindow.TypeEnabled = {}
 MapWindow.LegendVisible = false
 MapWindow.CenterOnPlayer = true
 MapWindow.OldFacet = -1
+MapWindow.ShowFacetInfo = false
 
 MapWindow.LegendItemTextColors = { normal={r=255,g=255,b=255}, disabled={r=80,g=80,b=80} }
 -----------------------------------------------------------------
@@ -30,7 +31,7 @@ function MapWindow.Initialize()
     -- Static text initialization
     
     WindowUtils.RestoreWindowPosition("MapWindow", true)    
-  
+    --WindowUtils.RestoreWindowPosition("Map", true)  
     WindowUtils.SetWindowTitle("MapWindow",GetStringFromTid(MapCommon.TID.Atlas))
 
     -- Update registration
@@ -53,13 +54,19 @@ function MapWindow.Initialize()
     LabelSetText("MapWindowCenterOnPlayerLabel", GetStringFromTid(1112059))
     ButtonSetCheckButtonFlag( "MapWindowCenterOnPlayerButton", true )
     ButtonSetPressedFlag( "MapWindowCenterOnPlayerButton", MapWindow.CenterOnPlayer )
-
-    MapWindow.PopulateMapLegend()
+	
+	WindowSetShowing("MapWindowFacetCombo", false)
+	WindowSetShowing("MapWindowFacetNextButton", false)
+	WindowSetShowing("MapWindowFacetPrevButton", false)
+	WindowSetShowing("MapWindowAreaCombo",false)
+	WindowSetShowing("MapWindowAreaNextButton", false)
+	WindowSetShowing("MapWindowAreaPrevButton", false)
     
     local windowWidth, windowHeight = WindowGetDimensions("MapWindow")
-    WindowSetDimensions( "Map", windowWidth - 30, windowHeight - 150)
-    labelSetText("MapWindowCoordsText", 0, 255,255)
+	WindowSetDimensions( "Map", windowWidth - 25, windowHeight - 74)
+    --labelSetText("MapWindowCoordsText", 0, 255,255)
 
+    MapWindow.PopulateMapLegend()
 end
 
 function MapWindow.Shutdown()
@@ -70,6 +77,43 @@ function MapWindow.Shutdown()
     UnregisterWindowData(WindowData.WaypointList.Type,0)
      --WindowUtils.SaveSetting( "MapWindow" )
 end
+
+function MapWindow.ResizeTooltip()
+	Tooltips.CreateTextOnlyTooltip(SystemData.ActiveWindow.name, L"Resize Map")
+	Tooltips.Finalize()
+	Tooltips.AnchorTooltip( Tooltips.ANCHOR_WINDOW_BOTTOM )
+end
+
+function MapWindow.FacetTooltip()
+	Tooltips.CreateTextOnlyTooltip(SystemData.ActiveWindow.name, L"Toggle Facet Info")
+	Tooltips.Finalize()
+	Tooltips.AnchorTooltip( Tooltips.ANCHOR_WINDOW_TOP )
+end
+				
+function MapWindow.ToggleFacetInfo()
+	if (MapWindow.ShowFacetInfo) then
+	MapWindow.ShowFacetInfo = false
+	else
+		MapWindow.ShowFacetInfo = true
+	end
+	WindowSetShowing("MapWindowFacetCombo", MapWindow.ShowFacetInfo)
+	WindowSetShowing("MapWindowFacetNextButton", MapWindow.ShowFacetInfo)
+	WindowSetShowing("MapWindowFacetPrevButton", MapWindow.ShowFacetInfo)
+	WindowSetShowing("MapWindowAreaCombo", MapWindow.ShowFacetInfo)
+	WindowSetShowing("MapWindowAreaNextButton", MapWindow.ShowFacetInfo)
+	WindowSetShowing("MapWindowAreaPrevButton", MapWindow.ShowFacetInfo)
+	local width, height = WindowGetDimensions( "MapWindow" )
+	if (MapWindow.ShowFacetInfo) then
+		WindowClearAnchors("Map")
+		WindowAddAnchor("Map", "topleft", "MapWindow", "topleft", 12, 120)
+		WindowSetDimensions("MapWindow", width, height + 60)
+	else
+		WindowClearAnchors("Map")
+		WindowAddAnchor("Map", "topleft", "MapWindow", "topleft", 12, 60)
+		WindowSetDimensions("MapWindow", width, height - 60)
+	end	
+end
+
 
 function MapWindow.UpdateMap()
     if( MapCommon.ActiveView == MapCommon.MAP_MODE_NAME ) then
@@ -438,7 +482,12 @@ end
 function MapWindow.OnResizeEnd()
 	local windowWidth, windowHeight = WindowGetDimensions("MapWindow")
 	WindowSetShowing("MapWindow",true)
-	WindowSetDimensions( "Map", windowWidth - 30, windowHeight - 150)
+
+	if (MapWindow.ShowFacetInfo) then
+		WindowSetDimensions( "Map", windowWidth - 25, windowHeight - 132)
+	else
+		WindowSetDimensions( "Map", windowWidth - 25, windowHeight - 74)
+	end	
 	WindowUtils.SaveWindowPosition("MapWindow", true)
 end
 

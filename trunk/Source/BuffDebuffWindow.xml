@@ -5,7 +5,7 @@
 	<Windows>
 		<Window name="BuffDebuffTemplate" movable="false" layer="secondary">
       <Size>
-        <AbsPoint x="32" y="32"/>
+        <AbsPoint x="40" y="32"/>
       </Size>
       <EventHandlers>
         <EventHandler event="OnMouseOver" function="BuffDebuff.MouseOver" />
@@ -23,13 +23,13 @@
           </Anchors>
         </DynamicImage>
         <!--Used to display the countdown for the bandage to take effect -->       
-        <Label name="$parentBandageTime" font="UO_DefaultText" maxchars="6" textalign="center" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+        <Label name="$parentlabelTimer" font="UO_Chat_Helvetica_21pt" maxchars="8" textalign="center" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
           <Size>
-            <AbsPoint x="32" y="15" />
+            <AbsPoint x="40" y="22" />
           </Size>
           <Anchors>
-            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTextureIcon">
-              <AbsPoint x="0" y="7" />
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="1" y="32" />
             </Anchor>
           </Anchors>
           <Color r="255" g="255" b="255" a="255" />

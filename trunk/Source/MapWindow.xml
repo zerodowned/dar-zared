@@ -36,7 +36,7 @@
     <!-- MAP WINDOW -->
     <Window name="MapWindow" movable="true">
       <Size>
-        <AbsPoint x="411" y="487" />
+        <AbsPoint x="411" y="337" />
       </Size>
       <Anchors>
         <Anchor point="center" relativePoint="center" relativeTo="">
@@ -73,10 +73,22 @@
           </EventHandlers>
         </Button>
 
+        <Button name="$parentToggleFacet" inherits="UO_Default_UpDownArrow_Button" layer="overlay" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+              <AbsPoint x="15" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapWindow.ToggleFacetInfo" />
+            <EventHandler event="OnMouseOver" function="MapWindow.FacetTooltip" />
+          </EventHandlers>
+        </Button>        
+        
         <ComboBox name="$parentFacetCombo" inherits="UO_Default_ComboBox" layer="overlay">
           <Anchors>
             <Anchor point="top" relativePoint="top" relativeTo="">
-              <AbsPoint x="0" y="38" />
+              <AbsPoint x="0" y="58" />
             </Anchor>
           </Anchors>
           <EventHandlers>
@@ -144,9 +156,8 @@
             <AbsPoint x="150" y="32" />
           </Size>
           <Anchors>
-            <Anchor point="left" relativePoint="top" relativeTo="$parentAreaCombo">
-              <AbsPoint x="85" y="25" />
-              <!--<AbsPoint x="50" y="-130" />-->              
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+              <AbsPoint x="15" y="30" />
             </Anchor>
           </Anchors>
           <EventHandlers>
@@ -155,22 +166,23 @@
         </Window>
         
         <Label name="$parentCoordsText" font="UO_DefaultText" maxchars="64" textalign="center" handleinput="false">
-          <Size>
-            <AbsPoint x="2000" y="32" />
-          </Size>
-          <Anchors>
-            <Anchor point="center" relativePoint="bottom" relativeTo="$parentCenterOnPlayer" />
-            <!--<AbsPoint x="150" y="80" />-->
-          </Anchors>
+            <Size>
+              <AbsPoint x="200" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="topright" relativePoint="topright" relativeTo="">
+                <AbsPoint x="0" y="30" />
+              </Anchor>
+            </Anchors>
         </Label>
         
         <MaskWindow name="Map" movable="false" popable="false" layer="default" handleinput="true">
           <Size>
-            <AbsPoint x="381" y="337" />
+            <AbsPoint x="385" y="264" />
           </Size>
           <Anchors>
-            <Anchor point="bottom" relativePoint="top" relativeTo="$parentAreaCombo">
-              <AbsPoint x="0" y="40" />
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+              <AbsPoint x="11" y="60" />
             </Anchor>
           </Anchors>
           <EventHandlers>
@@ -255,6 +267,7 @@
           </Anchors>
           <EventHandlers>
             <EventHandler event="OnLButtonDown" function="MapWindow.OnResizeBegin" />
+            <EventHandler event="OnMouseOver" function="MapWindow.ResizeTooltip" />
           </EventHandlers>
         </Button>
 

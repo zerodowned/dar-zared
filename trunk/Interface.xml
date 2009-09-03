@@ -66,6 +66,7 @@
   <Include file="Source/GenericGump.xml" />
   <Include file="Source/PartyWindow.xml" />
   <Include file="Source/PartyListWindow.xml" />
+  <Include file="Source/PetRenameWindow.xml" />
   
 
 
@@ -257,6 +258,9 @@
 		<Script file="Source/HealthBarColor.lua" />
     <Script file="Source/NameColor.lua" />
     <Script file="Source/StaticTextWindow.lua"/>
-	</Scripts>
+    
+    <!-- Dar Added-->
+    <Script file="Source/dzInterfaceCore.lua" />
+  </Scripts>
 
 </Interface>

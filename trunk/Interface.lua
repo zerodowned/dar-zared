@@ -59,6 +59,7 @@ function Interface.CreatePlayWindowSet()
 	CreateWindow( "UserWaypointWindow", false)
 	CreateWindow( "PartyWindow", false)
 	CreateWindow( "PartyListWindow", false)
+	CreateWindow( "PetRenameWindow", false)
 	
 	if( SystemData.Settings.Interface.showTipoftheDay ) then
 		CreateWindow( "TipoftheDayWindow", true)
@@ -79,6 +80,8 @@ function Interface.CreatePlayWindowSet()
 	OverheadText.InitializeEvents()
     StaticTextWindow.Initialize()
     MapCommon.Initialize()
+    
+   dzInterfaceCore.Initialize()
 
 	WindowRegisterEventHandler( "Root", SystemData.Events.DEBUGPRINT_TO_CONSOLE, "Interface.OnDebugPrint")
 

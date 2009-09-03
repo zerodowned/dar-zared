@@ -34,7 +34,7 @@
         <Button name="$parentHeal" inherits="HealPetButtonTemplate">
           <Anchors>
             <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
-              <AbsPoint x="128" y="-5" />
+              <AbsPoint x="128" y="-10" />
             </Anchor>
           </Anchors>
         </Button>
@@ -45,8 +45,7 @@
             </Anchor>
           </Anchors>
         </Button>
-
-        <EditBox name="$parentInputName" font="UO_DefaultText" maxchars="16" textalign="center" scrolling="horz" history="false" taborder="0" input="text">
+        <!--<EditBox name="$parentInputName" font="UO_DefaultText" maxchars="16" textalign="center" scrolling="horz" history="false" taborder="0" input="text">
           <Size>
             <AbsPoint x="120" y="16" />
           </Size>
@@ -61,8 +60,27 @@
             <EventHandler event="OnKeyEscape" function="PetWindow.OnKeyEscape" />
             <EventHandler event="OnLButtonDown" function="PetWindow.OnTextItemClicked" />
           </EventHandlers>
-        </EditBox>
-
+        </EditBox>-->
+        <Button name="$parentEditName" sticky="false" backgroundtexture="UO_Common" highlighttexture="UO_Common" layer="secondary" >
+          <Size>
+            <AbsPoint x="18" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentCure">
+              <AbsPoint x="0" y="18" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="PetWindow.RenamePet" />
+          </EventHandlers>
+          <TexCoords>
+            <Normal x="211" y="143" />
+            <NormalHighlit x="229" y="143" />
+            <Pressed x="229" y="143" />
+            <PressedHighlit x="229" y="143" />
+          </TexCoords>
+        </Button>
+        
         <Label name="$parentLabelName" font="UO_DefaultText" maxchars="60" textalign="left" handleinput="false" wordwrap="false" linespacing="18" poppable="false">
           <Size>
             <!--<AbsPoint x="158" y="28" />-->
